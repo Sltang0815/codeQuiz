@@ -13,7 +13,7 @@ let secondsRemaining = 60;
 # THEN I am presented with another question
 (code to place questions with the <div class="questionBox">) $(".questionBox").html() if its jQuery
 
-const questions=
+const questions =
 
 let q1{
     question: "Inside which HTML element do we put the JavaScript?",
