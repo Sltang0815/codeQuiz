@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 
     <title>Document</title>
 </head>
@@ -28,7 +29,16 @@
                 </div>
 
             </div>
+            <div id="scores" class="hide">
+                <h4>Your highscore:<span id="userScore"></span></h4>
 
+                <div class="input-group mb-3">
+                    <input type="text" id="initials" class="form-control" placeholder="Enter Intials">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="submitBtn">Submit</span>
+                    </div>
+                </div>
+            </div>
 
 
             <button class="start btn-primary btn-lg  " id="start" type="button">Start

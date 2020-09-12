@@ -2,9 +2,11 @@ const timeEl = document.querySelector("#seconds");
 const questionEl = document.querySelector("#question");
 const questionBtnEl = document.querySelector("#questionBtn");
 const startBtnel = document.querySelector("#start");
+const questionBoxEl = document.querySelector(".questionBox");
 let secondsRemaining = 60;
 let score = 0;
 let currentIndex = 0;
+let submitBtn = document.getElementById("submitBtn");
 
 let clock;
 
@@ -60,21 +62,78 @@ function startTimer() {
 //endgame function
 function gameOver() {
     clearInterval(clock);
+    console.log("Game Over");
+    let scores = document.getElementById("scores");
+    scores.classList.remove("hide");
+    questionBoxEl.classList.add("hide");
+    let userScore = document.getElementById("userScore");
+    userScore.textContent = score;
 
 }
 
-/*function startQuiz() {
-    if (questions[answers])
-        let correctAns = answers;
-    // pull objects options
 
-});*/
+function startQuiz() {
+    let currentQuestion = questions[currentIndex];
+    questionEl.innerHTML = "";
+    questionBtnEl.innerHTML = "";
+    questionEl.textContent = currentQuestion.question;
+    for (let i = 0; i < currentQuestion.options.length; i++) {
+        console.log(currentQuestion.options[i]);
+        let quizBtn = document.createElement("button");
+        quizBtn.textContent = currentQuestion.options[i];
+        quizBtn.setAttribute("value", currentQuestion.options[i]);
+        quizBtn.onclick = solutions;
+        questionBtnEl.append(quizBtn);
+    }
+
+    // questions: function
+    // score++;
+    // if (questions[answers])
+    // secondsRemaining--;
+    // alert("Correct");
+    // alert("Wrong");
+
+
+};
 
 startBtnel.addEventListener("click", function () {
     clock = setInterval(startTimer, 1000);
-    console.log("i was clicked");
+    console.log("The quiz has begun");
+    startBtnel.classList.add("hide");
     startQuiz();
     //look display none css start btn
-});
 
+});
+submitBtn.addEventListener("click", function () {
+    let initials = document.getElementById("initials");
+    let value = initials.value;
+    //set local storage with an object that has two keys: player and score
+
+}
+
+)
 // function for checking answers
+
+function solutions() {
+
+    console.log(this.value);
+    // !== is when
+    if (this.value !== questions[currentIndex].answers) {
+        alert("Wrong");
+        secondsRemaining -= 5;
+        timeEl.textContent = secondsRemaining;
+    }
+    else {
+        alert("Correct!");
+        secondsRemaining += 5;
+        timeEl.textContent = secondsRemaining;
+        score++;
+    }
+    currentIndex++;
+    if (currentIndex === questions.length) {
+        gameOver();
+    }
+    else {
+        startQuiz();
+    }
+}
